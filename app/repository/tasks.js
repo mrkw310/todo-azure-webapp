@@ -16,7 +16,7 @@ class Tasks {
   getTask = async (taskId) => {
     const client = new MySqlClient();
 
-    const data = await clientexecuteQuery(
+    const data = await client.clientexecuteQuery(
       `SELECT * FROM Tasks WHERE TaskId = :taskId`,
       { taskId }
     );
