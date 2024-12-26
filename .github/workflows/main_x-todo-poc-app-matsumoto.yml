@@ -8,7 +8,7 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
+
 jobs:
   build:
     runs-on: 'ubuntu-latest'
@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: xtodopocacrmatsumotoriku.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2793d5356ffb4113b2c691b5271ff166 }}/todo/webapp:${{ github.sha }}
+        tags: xtodopocacrmatsumotoriku.azurecr.io/${{ secrets.ContainerRegistry_Username }}/todo/webapp:${{ github.sha }}
         context: ./app
         file: ./app/Dockerfile
 
@@ -49,4 +49,4 @@ jobs:
         app-name: 'x-todo-poc-app-matsumoto'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppServicePublishProfile }}
-        images: 'xtodopocacrmatsumotoriku.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2793d5356ffb4113b2c691b5271ff166 }}/todo/webapp:${{ github.sha }}'
+        images: 'xtodopocacrmatsumotoriku.azurecr.io/${{ secrets.secrets.ContainerRegistry_Username }}/todo/webapp:${{ github.sha }}'
