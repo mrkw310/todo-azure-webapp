@@ -22,9 +22,9 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://xtodopocacrmatsumotoriku.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_2793d5356ffb4113b2c691b5271ff166 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_e0a7535aa047493d9547fb64fbd206d3 }}
+        registry: https://${{ secrets.ContainerRegistry_Servername }}/
+        username: ${{ secrets.ContainerRegistry_Username }}
+        password: ${{ secrets.ContainerRegistry_Password }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
@@ -48,5 +48,5 @@ jobs:
       with:
         app-name: 'x-todo-poc-app-matsumoto'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7ac91cc484dc496b8b19810d35a07283 }}
+        publish-profile: ${{ secrets.AzureAppServicePublishProfile }}
         images: 'xtodopocacrmatsumotoriku.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_2793d5356ffb4113b2c691b5271ff166 }}/todo/webapp:${{ github.sha }}'
